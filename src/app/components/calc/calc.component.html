@@ -1,0 +1,38 @@
+<section class="header">
+    <h1 align="center">Online Calculator</h1>
+</section>
+<br>
+<table align="center">
+    <tr>
+        <td colspan="4"><input size="1" type="text" value="text" name="text" [(ngModel)]="text" placeholder="0"/><hr></td>
+    </tr>
+    <tr>
+        <td><button id="clear" (click)="clear()">C</button></td>
+        <td><button (click)="setVal('%')">%</button></td>
+        <td><button (click)="setVal('/')">/</button></td>
+        <td><button (click)="setVal('*')">*</button></td>
+    </tr>
+    <tr>
+        <td><button (click)="setVal('7')">7</button></td>
+        <td><button (click)="setVal('8')">8</button></td> 
+        <td><button (click)="setVal('9')">9</button></td>
+        <td><button (click)="setVal('-')">-</button></td>
+    </tr>
+    <tr>
+        <td><button (click)="setVal('4')">4</button></td>
+        <td><button (click)="setVal('5')">5</button></td>
+        <td><button (click)="setVal('6')">6</button></td>
+        <td><button (click)="setVal('+')">+</button></td>
+    </tr><tr>
+        <td><button (click)="setVal('1')">1</button></td>
+        <td><button (click)="setVal('2')">2</button></td>
+        <td><button (click)="setVal('3')">3</button></td>
+        <td><button (click)="back()">&#8678;</button></td>
+    </tr>
+    <tr>
+        <td><button (click)="setVal('.')">.</button></td>
+        <td><button (click)="setVal('0')">0</button></td>
+        <td><button (click)="negate()">+/-</button></td>
+        <td><button id="equal" (click)="ans()">=</button></td>
+    </tr>
+</table>

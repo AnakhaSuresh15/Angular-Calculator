@@ -8,11 +8,13 @@ import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 })
 export class CalcComponent implements OnInit {
   text?: string = "";
+  negated: boolean = false;
   constructor() { }
   ngOnInit(): void {
   }
   clear() {
     this.text = "";
+    this.negated = false;
   }
   setVal(val: string){
     if(val==='+' || val==='-' || val==='%' || val==='*' || val==='/'){
@@ -26,12 +28,32 @@ export class CalcComponent implements OnInit {
     }
   }
   negate(){
+    let lastnum: number;
     let len = this.text?.length;
-    for(let i=len; i!>0; i!--){
+    let operatorFound: boolean = false;
+    let i: number;
+    for(i=len!; i>0; i--){
       if(this.text?.charAt(i!)==='+' || this.text?.charAt(i!)==='-' || this.text?.charAt(i!)==='%' || this.text?.charAt(i!)==='*' || this.text?.charAt(i!)==='/'){
-        this.text = this.text!.substring(0,i!+1) + (0-Number(this.text?.substring(i!+1,len)));
+        operatorFound = true;
+        if(this.text?.charAt(len!-1)===')'){
+          lastnum = Number(this.text?.substring(i!+1,len!-1));
+        }
+        else{
+          lastnum = Number(this.text?.substring(i!+1,len));
+        }
         break;
       }
+    }
+    if(!operatorFound){
+      this.text = (0-Number(this.text)).toString();
+    }
+    else if(this.negated){
+      this.text = this.text!.substring(0,i!-1) + lastnum!;
+      this.negated = false;
+    }
+    else{
+      this.text = this.text!.substring(0,i!+1) + '(' + (0-lastnum!) + ')';
+      this.negated = true;
     }
   }
   back(){
